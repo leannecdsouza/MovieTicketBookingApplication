@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row">
+    <br><br>
+
+    <!-- Left Navigation -->
+    <div class="col-md-2">
+      <ul class="list-group">
+        <li class="list-group-item complete" style="line-height:4em;">
+          <span class="glyphicon glyphicon-ok"></span> &nbsp; Pick Movie
+        </li>
+        <li class="list-group-item complete" style="line-height:4em;">
+          <span class="glyphicon glyphicon-ok"></span> &nbsp; Pick Theatre
+        </li>
+        <li class="list-group-item complete" style="line-height:4em;">
+          <span class="glyphicon glyphicon-ok"></span> &nbsp; Pick Seat
+        </li>
+        <li class="list-group-item" style="line-height:4em;">
+          <span class="glyphicon glyphicon-play"></span> &nbsp; Payment
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-6">
+      <div class="col-md-12">
+        <div class="alert alert-warning col-md-12">
+          <div class="col-md-2">
+            <img src="https://image.tmdb.org/t/p/w500/{{paymentsCtrl.MoviePoster}}" alt="{{paymentsCtrl.MovieName}}" style='border-radius:5%; margin-left:-30%; margin-top:50%; width:170%'>
+          </div>
+          <div class="col-md-10" style="font-size:0.8em">
+            <h3>{{paymentsCtrl.MovieName}}</h3>
+            {{paymentsCtrl.MovieDesc}}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h3 class="panel-title">Payment Details</h3>
+          </div>
+          <div class="panel-body">
+            <form action="" class="form col-md-8">
+              <div class="form-group col-md-12"><input type="text" class="form-control" placeholder="Name"></div>
+              <div class="form-group col-md-12"><input type="text" class="form-control" placeholder="Email"></div>
+              <div class="form-group col-md-12"><input type="text" class="form-control" placeholder="Card Number"></div>
+              <div class="form-group col-md-6"><input type="text" class="form-control" placeholder="Expiry"></div>
+              <div class="form-group col-md-6"><input type="text" class="form-control" placeholder="CVV"></div>
+              <div class="form-group col-md-12"><button class="btn btn-warning col-md-12">DONE</button></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      Note
+      <ul>
+        <li>Terms & Conditions Apply</li>
+        <li>No refund/cancellation</li>
+      </ul>
+      <br><br>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="col-md-3 bg-warning">
+      <h4 class="col-md-12" style="text-align:center"> Order Summary </h4>
+      <br>
+      <hr>
+      <b>Movie: </b> {{paymentsCtrl.MovieName}}
+      <br><br>
+      <b>When: </b>
+      <span class='rightt'>{{paymentsCtrl.MovieTime}}<br> xx-xxx-xx</span>
+      <br><br><br>
+      <b>Theatre: </b>
+      <span class="rightt"> {{paymentsCtrl.MovieTheatre}}</span>
+      <br><br>
+      <b>Seats: </b>
+      <span class="rightt"> {{paymentsCtrl.MovieSeats}}</span>
+      <hr>
+      <b>Total: </b>
+      <span class="rightt"> {{paymentsCtrl.MovieAmt}}</span>
+      <br><br>
+    </div>
+
+  </div>
+</div>

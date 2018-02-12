@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <!-- <p>Accounts are reset on server restart from <code>server/config/seed.js</code>. Default account is <code>test@example.com</code> / <code>test</code></p>
+      <p>Admin account is <code>admin@example.com</code> / <code>admin</code></p> -->
+    </div>
+    <div class="col-md-8">
+      <br><br>
+      <h1 style="text-align:center">BoxOffice</h1>
+      <form class="form" name="form" ng-submit="vm.login(form)" novalidate>
+
+        <div class="form-group">
+          <label>Email</label>
+
+          <input type="email" name="email" class="form-control" ng-model="vm.user.email" required>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+
+          <input type="password" name="password" class="form-control" ng-model="vm.user.password" required>
+        </div>
+
+        <div class="form-group has-error">
+          <p class="help-block" ng-show="form.email.$error.required && form.password.$error.required && vm.submitted">
+             Please enter your email and password.
+          </p>
+          <p class="help-block" ng-show="form.email.$error.email && vm.submitted">
+             Please enter a valid email.
+          </p>
+
+          <p class="help-block">{{ vm.errors.other }}</p>
+        </div>
+
+        <br>
+
+        <div>
+          <button class="btn btn-inverse btn-lg btn-warning col-md-12" type="submit">
+            Login
+          </button>
+          <br><br><br>
+          <a class="col-md-12" style="text-align:center" href="/signup">Don't have an account? Click here to register!</a>
+        </div>
+
+      </form>
+      <br><br>
+    </div>
+  </div>
+  <hr>
+</div>

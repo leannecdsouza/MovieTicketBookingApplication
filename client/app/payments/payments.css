@@ -1,0 +1,20 @@
+
+.rightt{
+  float: right;
+  text-align: right;
+}
+
+/* ------Left Nav-------- */
+
+.complete{
+  background-color: #eee;
+  color: #777;
+}
+
+.glyphicon-play{
+  color: orange;
+}
+
+.glyphicon-ok{
+  color: green;
+}

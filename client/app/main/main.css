@@ -1,0 +1,47 @@
+.thing-form {
+  margin: 20px 0;
+}
+
+.time{
+  margin-right: 2%;
+}
+
+.mposter{
+  border-radius: 5%;
+  height: 200px;
+  width: 130px;
+}
+.navbar-text {
+  margin-left: 15px;
+}
+
+.list-group, form{
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+form{
+  margin-top: 20px;
+}
+
+/* -------- */
+a:hover{
+  text-decoration: none;
+}
+
+.boxoffice{
+  position: fixed;
+  z-index: 2;
+}
+
+.mposter:hover{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.tops{
+  margin-left: -1.9%;
+  margin-top: 0.1%;
+  margin-bottom: 2%;
+  position: relative;
+  width:102.5%;
+  z-index: -1.5;
+}

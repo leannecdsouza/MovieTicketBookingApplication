@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <ul class="list-group" ng-hide="theatresCtrl.isAdmin">
+        <li class="list-group-item complete" style="line-height:4em;">
+          <span class="glyphicon glyphicon-ok"></span> &nbsp; Pick Movie
+        </li>
+        <li class="list-group-item" style="line-height:4em;">
+          <span class="glyphicon glyphicon-play"></span> &nbsp; Pick Theatre
+        </li>
+        <li class="list-group-item" style="line-height:4em;">
+          &nbsp;&nbsp;&nbsp; Pick Seat
+        </li>
+        <li class="list-group-item" style="line-height:4em;">
+          &nbsp;&nbsp;&nbsp; Payment
+        </li>
+      </ul>
+
+      <ul class="list-group" ng-show="theatresCtrl.isAdmin">
+        <li class="list-group-item" style="line-height:4em;">
+          <a href="/movies">
+            <span class="glyphicon glyphicon-play"></span> &nbsp; Add Movie
+          </a>
+        </li>
+        <li class="list-group-item" style="line-height:4em;">
+          <a href="/theatres">
+            <span class="glyphicon glyphicon-play"></span> &nbsp; Add Theatre
+          </a>
+        </li>
+        <li class="list-group-item" style="line-height:4em;">
+          <a href="/theatremapping">
+            <span class="glyphicon glyphicon-play"></span> &nbsp; Movie Mapping
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-9">
+      <br><h1 ng-hide="theatresCtrl.isAdmin"><span class="glyphicon glyphicon-play"></span> {{theatresCtrl.MovieName}}</h1>
+      <form class="form" ng-show="theatresCtrl.isAdmin">
+        <div class="form-group col-md-4">
+          <input type="text" required class="form-control" ng-model="theatresCtrl.TheatreName" placeholder="Theatre Name">
+        </div>
+        <div class="form-group col-md-4">
+          <input type="text" required class="form-control" ng-model="theatresCtrl.City" placeholder="City">
+        </div>
+        <div class="form-group col-md-4">
+          <input type="submit" class="btn btn-warning" ng-click="theatresCtrl.addTheatre()" />
+        </div>
+      </form>
+      <div class="col-md-11">
+        <table class="table">
+          <tr>
+            <th>Theatre Name</th>
+            <th>City</th>
+            <!-- <th ng-hide="theatresCtrl.isAdmin">Timings</th> -->
+            <th>Timings</th>
+            <th ng-show="theatresCtrl.isAdmin"></th>
+          </tr>
+          <tr ng-repeat="m in theatresCtrl.Theatres">
+            <td>{{m.TheatreName}}</td>
+            <td>{{m.City}}</td>
+            <!-- <td ng-hide="theatresCtrl.isAdmin"> -->
+            <td>
+              <span class="label label-warning time" ng-repeat="x in m.Timings" ng-click="theatresCtrl.getSeating(x, m.TheatreName)">{{x}}<span>
+            </td>
+            <td ng-show="theatresCtrl.isAdmin">
+              <button class="btn btn-danger" ng-click="theatresCtrl.removeTheatre(m._id)"><span class="glyphicon glyphicon-trash"></span></button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

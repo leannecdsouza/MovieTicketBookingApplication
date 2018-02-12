@@ -1,0 +1,20 @@
+
+.seat{
+  background-color: #eee;
+  border-radius: 30%;
+  max-height: 30px;
+  max-width: 30px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.sselected{
+  background-color: orange;
+  color: #fff;
+}
+
+.disabled{
+  background-color: #777;
+  color: #000;
+  pointer-events: none;
+}

@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      <ul class="list-group">
+        <li class="list-group-item" style="line-height:4em;">
+          <a href="/movies">
+            <span class="glyphicon glyphicon-play"></span> &nbsp; Add Movie
+          </a>
+        </li>
+        <li class="list-group-item" style="line-height:4em;">
+          <a href="/theatres">
+            <span class="glyphicon glyphicon-play"></span> &nbsp; Add Theatre
+          </a>
+        </li>
+        <li class="list-group-item" style="line-height:4em;">
+          <a href="/theatremapping">
+            <span class="glyphicon glyphicon-play"></span> &nbsp; Movie Mapping
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-3">
+      <br>
+      <h4>Add movie to theatres</h4>
+      <hr>
+      <form>
+        <div class="form-group col-md-12">
+          Movie
+          <select class="form-control" ng-model="theatremappingCtrl.mapMovie">
+            <option ng-repeat="m in theatremappingCtrl.Movie">{{m.MovieName}}</option>
+          </select>
+        </div>
+
+        <div class="form-group col-md-12">
+          Theatre
+          <select class="form-control" ng-model="theatremappingCtrl.mapTheatre">
+              <option ng-repeat="t in theatremappingCtrl.Theatre">{{t.TheatreName}}, {{t.City}}</option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-12">
+          Date
+          <input type="date" class="form-control" ng-model="theatremappingCtrl.mapDate">
+        </div>
+
+        <div class="form-group col-md-5">
+          <select class="form-control" ng-model="theatremappingCtrl.mapHrs">
+            <option ng-repeat="H in theatremappingCtrl.Hrs">{{H}}</option>
+          </select>Hours
+        </div>
+        <div class="form-group col-md-5">
+          <select class="form-control" ng-model="theatremappingCtrl.mapMin">
+            <option ng-repeat="M in theatremappingCtrl.Min">{{M}}</option>
+          </select>Mins
+        </div>
+        <div class="form-group col-md-2">
+          <button ng-click="theatremappingCtrl.addTime()" class="btn btn-warning pull-right">+</button>
+        </div>
+        <div class="col-md-12">
+          <span class="bg-warning" ng-repeat="t in theatremappingCtrl.Time">{{t}}</span>
+        </div>
+
+        <div class="form-group col-md-12">
+          <button ng-click="theatremappingCtrl.addMapping()" class="btn btn-warning pull-right" style="width:100%">Add</button>
+        </div>
+      </form>
+    </div>
+
+
+    <div class="col-md-7">
+      <br>
+      <div class="col-md-11">
+        <table class="table">
+          <tr>
+            <th>Movie</th>
+            <th>Theatre</th>
+            <th>Date</th>
+            <th>Timings</th>
+            <th></th>
+          </tr>
+          <tr ng-repeat="m in theatremappingCtrl.Map">
+            <td>{{m.MovieName}}</td>
+            <td>{{m.TheatreName}}</td>
+            <td>{{m.Dates}}</td>
+            <td>
+              <span class="label label-warning time" ng-repeat="x in m.Timings">{{x}}<span>
+            </td>
+            <td ng-show="theatremappingCtrl.isAdmin()">
+              <button ng-click="theatremappingCtrl.removeMapping(m._id)" class="btn btn-warnings">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
