@@ -7,7 +7,11 @@ var SeatbookingSchema = new mongoose.Schema({
   Theatre: String,
   ShowDate: String,
   ShowTime: String,
-  Seats: Array
+  Seats: Array,
+  UserName: String,
+  UserEmail: String,
+  UserCardNumber: String,
+  Amount: String
 });
 
 export default mongoose.model('Seatbooking', SeatbookingSchema);
