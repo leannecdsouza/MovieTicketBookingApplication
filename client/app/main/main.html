@@ -5,7 +5,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-3 bg-warning" ng-hide="mainCtrl.isAdmin">
+    <div class="col-md-3 bg-warning" ng-hide="mainCtrl.isAdmin()">
       <br>
       <h4>Book tickets in 4 simple steps!</h4>
       <ul class="list-group">
@@ -23,7 +23,7 @@
         </li>
       </ul>
     </div>
-    <div class="col-md-3" ng-show="mainCtrl.isAdmin">
+    <div class="col-md-3" ng-show="mainCtrl.isAdmin()">
     <h4>Admin options:</h4>
       <ul class="list-group">
         <li class="list-group-item" style="line-height:4em;">
@@ -46,7 +46,7 @@
 
     <div class="col-md-8">
       <h2 class="col-md-12" style="text-decoration:underline;">Now Showing</h2>
-      <div class="movie col-md-3" ng-repeat="m in mainCtrl.moviess">
+      <div class="movie col-md-3" ng-repeat="m in mainCtrl.moviess | filter: {'Status':true}">
 
         <div data-toggle="modal" data-target="#myModal" ng-click="mainCtrl.getMovie(m._id)">
           <img src="https://image.tmdb.org/t/p/w500/{{m.Poster}}" alt="{{m.MovieName}}" class='mposter'>
