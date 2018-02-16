@@ -8,27 +8,31 @@
       this.socket = socket;
       this.isAdmin = Auth.isAdmin;
       this.Theatres = [];
+      this.ThisWeek = [];
 
       $scope.$on('$destroy', function() {
-        socket.unsyncUpdates('/api/theatresendpoints');
+        socket.unsyncUpdates('theatresendpoint');
       });
     }
 
     $onInit() {
       this.MovieName = sessionStorage.getItem('MovieName');
-      if(this.MovieName != 'null'){
-        this.$http.get('/api/moviesintheatres/search/' + this.MovieName)
-          .then(response => {
-            this.Theatres = response.data;
-            this.socket.syncUpdates('/api/moviesintheatres', this.Theatres);
-          });
-      } else {
-        this.$http.get('/api/theatresendpoints')
-          .then(response => {
-            this.Theatres = response.data;
-            this.socket.syncUpdates('/api/theatresendpoints', this.Theatres);
-          });
-        }
+      this.$http.get('/api/moviesintheatres/search/' + this.MovieName)
+      .then(response => {
+        this.Theatresm = response.data;
+        this.socket.syncUpdates('moviesintheatres', this.Theatresm);
+      });
+      this.$http.get('/api/theatresendpoints')
+      .then(response => {
+        this.Theatres = response.data;
+        this.socket.syncUpdates('theatresendpoint', this.Theatres);
+      });
+
+      var d = new Date();
+      for(var a = 0; a <7; a++){
+        d.setDate(d.getDate() + 1);
+        this.ThisWeek[a] = d.toString().substr(0,10);
+      }
     }
 
     addTheatre() {
@@ -38,7 +42,6 @@
       });
       this.TheatreName = '';
       this.City = '';
-      alert("Theatre has been successfully added.");
     }
 
     removeTheatre(id) {
@@ -48,6 +51,7 @@
 
     getSeating(x,n) {
       sessionStorage.setItem('Time', x);
+      sessionStorage.setItem('Date', this.DatePicked);
       sessionStorage.setItem('Theatre', n);
       location.href = "/seatselection";
     }

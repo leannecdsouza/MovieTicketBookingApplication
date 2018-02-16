@@ -16,7 +16,7 @@
       this.Min = ['00', '15', '30', '45'];
 
       $scope.$on('$destroy', function() {
-        socket.unsyncUpdates('/api/moviesintheatres');
+        socket.unsyncUpdates('moviesintheatres');
       });
     }
 
@@ -24,19 +24,19 @@
       this.$http.get('/api/theatresendpoints')
         .then(response => {
           this.Theatre = response.data;
-          this.socket.syncUpdates('/api/theatresendpoints', this.Theatre);
+          this.socket.syncUpdates('theatresendpoint', this.Theatre);
         });
 
       this.$http.get('/api/moviesendpoints')
-        .then(response => {
-          this.Movie = response.data;
-          this.socket.syncUpdates('/api/moviesendpoints', this.Movie);
-        });
+      .then(response => {
+        this.Movie = response.data;
+        this.socket.syncUpdates('moviesendpoint', this.Movie);
+      });
 
       this.$http.get('/api/moviesintheatres')
         .then(response => {
           this.Map = response.data;
-          this.socket.syncUpdates('/api/moviesintheatres', this.Map);
+          this.socket.syncUpdates('moviesintheatre', this.Map);
         });
     }
 
@@ -47,7 +47,6 @@
 
     addMapping() {
       var d = this.mapDate;
-      alert(this.mapDate.toString());
       this.mapDate = d.toString().substring(0, 10);
       var name = this.mapMovie;
 
@@ -57,16 +56,16 @@
         Dates: this.mapDate,
         Timings: this.Time
       });
-      this.TheatreName = '';
-      this.MovieName = '';
+      this.mapTheatre = '';
+      this.mapMovie = '';
       this.mapDate = '';
       this.mapHrs = '';
       this.mapMin = '';
+      this.Time = '';
 
       this.$http.put('/api/moviesendpoints/status/' + name, {
-        Status: 'True'
+        Status: true
       });
-      alert("Movie is now showing in theatres.");
     }
 
     removeMapping(id) {

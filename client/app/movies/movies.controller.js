@@ -10,14 +10,14 @@ class MoviesComponent {
       this.Movies = [];
 
       $scope.$on('$destroy', function() {
-        socket.unsyncUpdates('/api/moviesendpoints');
+        socket.unsyncUpdates('moviesendpoint');
       });
   }
 
   $onInit() {
     this.$http.get('/api/moviesendpoints').then(response => {
       this.Movies = response.data;
-      this.socket.syncUpdates('/api/moviesendpoints', this.Movies);
+      this.socket.syncUpdates('moviesendpoint', this.Movies);
     });
   }
 
@@ -34,7 +34,7 @@ class MoviesComponent {
       Description: MovieData.overview,
       R_date: MovieData.release_date,
       Poster: MovieData.poster_path,
-      Status: "False"
+      Status: false
 
     });
     MovieData.title = '';

@@ -8,6 +8,7 @@
       this.socket = socket;
       this.isAdmin = Auth.isAdmin;
       this.Booking = [];
+      var SeatsTaken = [];
       var SeatNo = [];
       var Amt = 0;
 
@@ -17,14 +18,14 @@
           var p = SeatNo.indexOf(seatid);
           if (p == -1) {
             SeatNo.push(seatid);
-            if($(this).hasClass('gold')){
+            if ($(this).hasClass('gold')) {
               Amt = Amt + 500;
             } else {
               Amt = Amt + 300;
             }
           } else {
             SeatNo.splice(p, 1);
-            if($(this).hasClass('gold')){
+            if ($(this).hasClass('gold')) {
               Amt = Amt - 500;
             } else {
               Amt = Amt - 300;
@@ -38,36 +39,42 @@
       });
 
       $scope.$on('$destroy', function() {
-        socket.unsyncUpdates('/api/seatbookings');
+        socket.unsyncUpdates('seatbooking');
       });
     }
 
     $onInit() {
       this.MovieName = sessionStorage.getItem('MovieName');
-      this.$http.get('/api/moviesintheatres')
+      this.MovieTheatre = sessionStorage.getItem('Theatre');
+      this.MovieDate = sessionStorage.getItem('Date');
+      this.MovieTime = sessionStorage.getItem('Time');
+
+      this.$http.get('/api/seatbookings/search/' + this.MovieName + '/' + this.MovieTheatre + '/' + this.MovieDate + '/' + this.MovieTime)
         .then(response => {
           this.Booking = response.data;
-          this.socket.syncUpdates('/api/seatbookings', this.Booking);
+          this.socket.syncUpdates('seatbooking', this.Booking);
+
+          var SeatsTaken = this.Booking[0].Seats;
+          // alert(SeatsTaken);
+
+          console.log(SeatsTaken);
+          for (var i = 0; i < SeatsTaken.length; i++) {
+            var s = SeatsTaken[i];
+            $('#' + s).addClass('disabled');
+          }
         });
 
-      var SeatsTaken = this.Booking.Seats;
-      // for (var i = 0; i < SeatsTaken.length; i++) {
-      //   var s = this.Booking.Seats[i];
-      //   document.getElementbyId(s).setClass("disabled");
-      // }
-      this.MovieName = sessionStorage.getItem('MovieName');
-      this.MovieTheatre = sessionStorage.getItem('Theatre');
-      this.MovieTime = sessionStorage.getItem('Time');
+
     }
 
-    checkOut(){
+    checkOut() {
       var amt = document.getElementById("totalAmt").innerHTML;
       sessionStorage.setItem('Amount', amt);
 
       var a = document.getElementById("seatselected").innerHTML;
       this.SeatNo = a.split(",");
       sessionStorage.setItem('Seats', this.SeatNo);
-      
+
       location.href = "/payments";
     }
   }

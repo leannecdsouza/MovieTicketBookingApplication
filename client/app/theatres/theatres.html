@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2">
-      <ul class="list-group" ng-hide="theatresCtrl.isAdmin">
+      <ul class="list-group" ng-hide="theatresCtrl.isAdmin()">
         <li class="list-group-item complete" style="line-height:4em;">
           <span class="glyphicon glyphicon-ok"></span> &nbsp; Pick Movie
         </li>
@@ -16,7 +16,7 @@
         </li>
       </ul>
 
-      <ul class="list-group" ng-show="theatresCtrl.isAdmin">
+      <ul class="list-group" ng-show="theatresCtrl.isAdmin()">
         <li class="list-group-item" style="line-height:4em;">
           <a href="/movies">
             <span class="glyphicon glyphicon-play"></span> &nbsp; Add Movie
@@ -35,9 +35,16 @@
       </ul>
     </div>
 
-    <div class="col-md-9">
-      <br><h1 ng-hide="theatresCtrl.isAdmin"><span class="glyphicon glyphicon-play"></span> {{theatresCtrl.MovieName}}</h1>
-      <form class="form" ng-show="theatresCtrl.isAdmin">
+    <div class="col-md-9"><br>
+      <div ng-hide="theatresCtrl.isAdmin()">
+        <h1 class="col-md-8"><span class="glyphicon glyphicon-play"></span> {{theatresCtrl.MovieName}}</h1>
+        <div class="col-md-3" style="margin:1%;">Date:
+          <select class="form-control" ng-model="theatresCtrl.DatePicked">
+            <option class="form-group" ng-repeat="d in theatresCtrl.ThisWeek">{{d}}</option>
+          </select>
+        </div>
+      </div>
+      <form class="form" ng-show="theatresCtrl.isAdmin()">
         <div class="form-group col-md-4">
           <input type="text" required class="form-control" ng-model="theatresCtrl.TheatreName" placeholder="Theatre Name">
         </div>
@@ -52,19 +59,24 @@
         <table class="table">
           <tr>
             <th>Theatre Name</th>
-            <th>City</th>
-            <!-- <th ng-hide="theatresCtrl.isAdmin">Timings</th> -->
-            <th>Timings</th>
-            <th ng-show="theatresCtrl.isAdmin"></th>
+            <th ng-show="theatresCtrl.isAdmin()">City</th>
+            <th ng-hide="theatresCtrl.isAdmin()">Timings</th>
+            <th ng-show="theatresCtrl.isAdmin()"></th>
           </tr>
-          <tr ng-repeat="m in theatresCtrl.Theatres">
+          <tr ng-repeat="m in theatresCtrl.Theatresm | filter: {'Dates': theatresCtrl.DatePicked}" ng-hide="theatresCtrl.isAdmin()">
             <td>{{m.TheatreName}}</td>
-            <td>{{m.City}}</td>
-            <!-- <td ng-hide="theatresCtrl.isAdmin"> -->
             <td>
               <span class="label label-warning time" ng-repeat="x in m.Timings" ng-click="theatresCtrl.getSeating(x, m.TheatreName)">{{x}}<span>
             </td>
-            <td ng-show="theatresCtrl.isAdmin">
+            <td ng-show="theatresCtrl.isAdmin()">
+              <button class="btn btn-danger" ng-click="theatresCtrl.removeTheatre(m._id)"><span class="glyphicon glyphicon-trash"></span></button>
+            </td>
+          </tr>
+
+          <tr ng-repeat="m in theatresCtrl.Theatres" ng-show="theatresCtrl.isAdmin()">
+            <td>{{m.TheatreName}}</td>
+            <td>{{m.City}}</td>
+            <td ng-show="theatresCtrl.isAdmin()">
               <button class="btn btn-danger" ng-click="theatresCtrl.removeTheatre(m._id)"><span class="glyphicon glyphicon-trash"></span></button>
             </td>
           </tr>
