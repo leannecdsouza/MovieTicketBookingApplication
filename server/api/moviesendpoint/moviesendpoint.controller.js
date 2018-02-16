@@ -76,7 +76,9 @@ export function show(req, res) {
 
 // Gets Movies from the DB based on Status
 export function searchStat(req, res) {
-  return Moviesendpoint.find({'Status':'true'}).exec()
+  return Moviesendpoint.find({
+      'Status': 'true'
+    }).exec()
     .then(handleEntityNotFound(res))
     .then(respondWithResult(res))
     .catch(handleError(res));
@@ -103,14 +105,20 @@ export function update(req, res) {
 
 // Updates an existing Movie in the DB
 export function updateStatus(req, res) {
-  if (req.body.MovieName) {
-    delete req.body.MovieName;
-  }
-  return Moviesendpoint.findById(req.params.name).exec()
-    .then(handleEntityNotFound(res))
-    .then(saveUpdates(req.body))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+  Moviesendpoint.findOneAndUpdate({
+      MovieName: req.params.name
+    }, {
+      $set: {
+        Status: req.body.Status
+      }
+    }, {
+      upsert: true
+    },
+    function(err, docs) {
+      if (err) {
+        console.log(err);
+      }
+    });
 }
 
 // Deletes a Moviesendpoint from the DB

@@ -10,7 +10,7 @@ var MoviesendpointSchema = new mongoose.Schema({
   Description: String,
   R_date: String,
   Poster: String,
-  Status: String
+  Status: Boolean
 });
 
 export default mongoose.model('Moviesendpoint', MoviesendpointSchema);

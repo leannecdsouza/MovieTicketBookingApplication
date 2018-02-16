@@ -3,9 +3,8 @@
 import mongoose from 'mongoose';
 
 var RatingsendpointSchema = new mongoose.Schema({
-  MovieId : String,
   MovieName : String,
-  Rating : String,
+  Rating : Number,
   UserId : String
 });
 

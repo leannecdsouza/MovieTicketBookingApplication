@@ -74,6 +74,14 @@ export function show(req, res) {
     .catch(handleError(res));
 }
 
+// Gets a single Movie from the DB based on MovieName
+export function search(req, res) {
+  return Seatbooking.find({'Movie':req.params.name, 'Theatre':req.params.theatre, 'ShowDate':req.params.date, 'ShowTime':req.params.time}).exec()
+    .then(handleEntityNotFound(res))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
 // Creates a new Seatbooking in the DB
 export function create(req, res) {
   return Seatbooking.create(req.body)

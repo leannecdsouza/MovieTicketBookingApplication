@@ -93,6 +93,14 @@ export function update(req, res) {
     .catch(handleError(res));
 }
 
+// Search a Movie by Name in the DB
+export function search(req, res) {
+  return Ratingsendpoint.find({'MovieName':req.params.name}).exec()
+    .then(handleEntityNotFound(res))
+    .then(respondWithResult(res))
+    .catch(handleError(res));
+}
+
 // Deletes a Ratingsendpoint from the DB
 export function destroy(req, res) {
   return Ratingsendpoint.findById(req.params.id).exec()
