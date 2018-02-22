@@ -6,11 +6,11 @@
           <th>Movie</th>
           <th>Rating</th>
         </tr>
-        <tr ng-repeat="m in ratingsCtrl.Rated">
+        <tr ng-repeat="m in ratingsCtrl.Rate">
         <!-- <tr ng-repeat="m in ratingsCtrl.Rated | filter: {'MovieName':Movie}"> -->
         <!-- <tr> -->
-          <td>{{m.MovieName}}</td>
-          <td>{{m.Rating}}</td>
+          <td>{{m.name}}</td>
+          <td>{{m.avg}}</td>
         </tr>
       </table>
 
@@ -22,7 +22,7 @@
         </select>
       </div>
       <div class="form-group col-md-12"> Rating:
-        <select class="form-control" ng-model="ratingsCtrl.Rating">
+        <select class="form-control" ng-model="ratingsCtrl.RateNo">
           <option class="form-group" value="1">1</option>
           <option class="form-group" value="2">2</option>
           <option class="form-group" value="3">3</option>

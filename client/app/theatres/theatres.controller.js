@@ -16,6 +16,9 @@
     }
 
     $onInit() {
+      var tday = new Date();
+      this.DatePicked = tday.toString().substr(0,10);
+
       this.MovieName = sessionStorage.getItem('MovieName');
       this.$http.get('/api/moviesintheatres/search/' + this.MovieName)
       .then(response => {
@@ -29,7 +32,9 @@
       });
 
       var d = new Date();
-      for(var a = 0; a <7; a++){
+      this.ThisWeek[0] = d.toString().substr(0,10);
+      
+      for(var a = 1; a < 7; a++){
         d.setDate(d.getDate() + 1);
         this.ThisWeek[a] = d.toString().substr(0,10);
       }

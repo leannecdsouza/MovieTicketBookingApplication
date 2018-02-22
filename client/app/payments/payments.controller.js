@@ -36,6 +36,7 @@
     bookTickets() {
       var a = sessionStorage.getItem('Seats');
       this.Seats = a.split(",");
+      console.log("anything1");
 
       this.$http.post('/api/seatbookings', {
         Movie: sessionStorage.getItem('MovieName'),
@@ -48,11 +49,14 @@
         UserEmail: this.MovieEmail,
         UserCardNumber: this.MovieCard
       });
+
+      console.log("anything2");
       this.MoviePerson = '';
       this.Seats = '';
       this.MovieEmail = '';
       this.MovieCard = '';
-      location.href = "/home";
+      location.href = "/";
+
     }
   }
 
