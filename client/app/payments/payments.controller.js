@@ -50,12 +50,11 @@
         UserCardNumber: this.MovieCard
       });
 
-      console.log("anything2");
       this.MoviePerson = '';
       this.Seats = '';
       this.MovieEmail = '';
       this.MovieCard = '';
-      location.href = "/";
+      location.href = "/confirmation";
 
     }
   }
