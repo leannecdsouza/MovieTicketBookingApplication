@@ -57,8 +57,10 @@
         <div class="form-group col-md-2">
           <button ng-click="theatremappingCtrl.addTime()" class="btn btn-warning pull-right">+</button>
         </div>
-        <div class="col-md-12">
-          <span class="bg-warning" ng-repeat="t in theatremappingCtrl.Time">{{t}}</span>
+        <div class="col-md-12" style="margin-bottom:10px">
+          <span class="label label-warning" ng-repeat="t in theatremappingCtrl.Time">
+            {{t}} &nbsp;<span class="glyphicon glyphicon-remove" ng-click="theatremappingCtrl.removeTime(t)"></span>
+          </span>
         </div>
 
         <div class="form-group col-md-12">

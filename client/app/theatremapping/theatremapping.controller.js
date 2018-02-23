@@ -62,10 +62,16 @@
         this.mapHrs = '';
         this.mapMin = '';
         this.Time = '';
+        this.Time = [];
 
         this.$http.put('/api/moviesendpoints/status/' + name, {
           Status: true
         });
+      }
+
+      removeTime(timin){
+        var t = this.Time.indexOf(timin);
+        this.Time.splice(t, 1);
       }
 
       removeMapping(id, name) {
