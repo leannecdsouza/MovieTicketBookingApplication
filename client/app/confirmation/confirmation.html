@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <br><br>
+
+    <!-- Left Navigation -->
+    <div class="col-md-2">
+      <ul class="list-group">
+        <li class="list-group-item complete" style="line-height:4em;">
+          <span class="glyphicon glyphicon-ok"></span> &nbsp; Pick Movie
+        </li>
+        <li class="list-group-item complete" style="line-height:4em;">
+          <span class="glyphicon glyphicon-ok"></span> &nbsp; Pick Theatre
+        </li>
+        <li class="list-group-item complete" style="line-height:4em;">
+          <span class="glyphicon glyphicon-ok"></span> &nbsp; Pick Seat
+        </li>
+        <li class="list-group-item complete" style="line-height:4em;">
+          <span class="glyphicon glyphicon-ok"></span> &nbsp; Payment
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-9">
+      <div class="alert alert-success">
+        <span class="glyphicon glyphicon-check"></span> &nbsp; Your tickets have been booked!
+      </div>
+      <div class="col-md-12">
+        <div class="alert alert-warning col-md-12">
+          <div class="col-md-2">
+            <img src="https://image.tmdb.org/t/p/w500/{{confirmationCtrl.MoviePoster}}" alt="{{confirmationCtrl.MovieName}}" style='border-radius:5%; margin-left:-10%; width:100%'>
+          </div>
+          <div class="col-md-5" style="line-height:2em">
+            <h3>{{confirmationCtrl.MovieName}}</h3>
+            {{confirmationCtrl.MovieTheatre}}<br>
+            {{confirmationCtrl.MovieTime}}  &nbsp;|  {{confirmationCtrl.MovieDate}}<br>
+            {{confirmationCtrl.MovieSeats}}<br><br>
+            <b>Amount Paid:</b>
+            {{confirmationCtrl.MovieAmt}}
+          </div>
+          <div class="col-md-2" style="text-align:center">
+            <img src="../assets/images/qr.png" style="width:100%">
+            Booking Code
+            <h4>PN23OCJ</h4>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
