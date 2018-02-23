@@ -5,6 +5,6 @@ angular.module('movieAppApp')
     $routeProvider
       .when('/movies', {
         template: '<movies></movies>',
-        // authenticate: 'admin'
+        authenticate: 'admin'
       });
   });

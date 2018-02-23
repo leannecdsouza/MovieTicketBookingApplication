@@ -70,7 +70,7 @@
                 <br>
                 <b>Duration:</b> <span id="dur"></span> minutes
                 <br><br>
-                <button type="button" class="btn btn-warning pull-right" data-dismiss="modal" ng-click="mainCtrl.movieDone()">Get Tickets</button>
+                <button type="button" class="btn btn-warning pull-right" data-dismiss="modal" ng-hide="mainCtrl.isAdmin()" ng-click="mainCtrl.movieDone()">Get Tickets</button>
                 <br><br>
               </div>
             </div>
